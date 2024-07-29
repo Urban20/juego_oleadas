@@ -1,5 +1,5 @@
 import pygame
-import pygame.locals
+
 #memoria jugador--------
 jugador_der=[]
 jugador_izq = []
@@ -15,29 +15,38 @@ bala_jugador=[]
 #memoria enemigo--------
 zombi_der_caminando=[]
 zombi_izq_caminando=[]
+#ataque
 zombi_der_atacando= []
 zombi_izq_atacando= []
+#muerte
+muerte_enemigo= []
+muerte_enemigo_izq=[]
 #memoria jugador--------
 
-enemigos_sprites = []
 
 
-resolx = 900
-resoly= 500
+
+resolx = 1000
+resoly= 900
 
 pantalla = pygame.display.set_mode((resolx,resoly))
 
 
 
 #colores-----------------
-verde_militar = (93,109,98)
+verde_militar = (84, 156, 84)
+ver_militar_osc = (34, 95, 34)
 salmon = (228, 127, 119)
 lila= (163, 119, 228)
 gris =(208,215,207)
 blanco=(255,255,255)
 rojo= (255,0,0)
 verde= (0,255,0)
+negro= (0,0,0)
+violeta= (180,131,255)
+amarillo = (228, 255, 0 )
 #colores-----------------
+fondo= pygame.image.load('elementos/fondo.png')
 
 #JUGADOR-----------------------------------------------------------------
 #jugador derecha
@@ -52,7 +61,7 @@ for x in range(1,8):
     #jugador quieto
     #derecha
     jugadorquieto= pygame.image.load(f'jugador/quieto/quieto{x}.PNG')
-    jugadorquieto.set_colorkey(verde_militar)
+    
     jugadorquieto_izq = pygame.transform.flip(jugadorquieto,True,False)
     jugador_quieto.append(jugadorquieto)
     jugador_quieto_izq.append(jugadorquieto_izq)
@@ -80,16 +89,36 @@ for x in range(1,9):
     zombi_der_caminando.append(caminando_der)
 
     caminando_izq=pygame.transform.flip(caminando_der,True,False)
-    caminando_izq.set_colorkey(verde_militar)
+    
     zombi_izq_caminando.append(caminando_izq)
-
+#atacando
 for x in range(1,6):
     zombi_atacando= pygame.image.load(f'enemigo/atacando/{x}.PNG')
-    zombi_atacando.set_colorkey(verde_militar)
+    
     zombi_der_atacando.append(zombi_atacando)
 
     zombi_atacando_izq= pygame.transform.flip(zombi_atacando,True,False)
-    zombi_atacando_izq.set_colorkey(verde_militar)
+    
     zombi_izq_atacando.append(zombi_atacando_izq)
+# zombi-muerte
+for x in range(1,6):
+    #derecha
+    zombi_muerte= pygame.image.load(f'enemigo/muerte/{x}.PNG')
+    muerte_enemigo.append(zombi_muerte)
+    #izquierda
+    zombi_muerte_izq= pygame.transform.flip(zombi_muerte,True,False)
+    muerte_enemigo_izq.append(zombi_muerte_izq)
+
 
 #zombi------------------------------------------------------------------------
+
+#items---------------------------------------------------
+botiquin = pygame.image.load('elementos/vida.png')
+item_vel = pygame.image.load('elementos/energia_item.PNG')
+img_bost = pygame.image.load('elementos/bost.jpg')
+#----------------mouse----------------------------------------------------
+mouse = pygame.image.load('elementos/mouse.PNG')
+mouse.set_colorkey((219,245,221))
+urban = pygame.image.load('elementos/urban.png')
+urban_tamaño= urban.get_size()
+#musica-------
